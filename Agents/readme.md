@@ -1,4 +1,4 @@
-# Agents Workflows for Shrammo.ai
+# Agents Workflows for Shramo.ai
 
 > This folder contains all agentic workflows for **Shramo.ai**.
 
