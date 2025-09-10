@@ -1,0 +1,766 @@
+{
+    "name": "Integration Webhooks",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 3119105,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -300,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "My gateway-webhook webhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "filter": {
+                "name": "",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{1.event}}",
+                            "b": "call_analyzed",
+                            "o": "text:equal"
+                        }
+                    ],
+                    [
+                        {
+                            "a": "{{1.event}}",
+                            "b": "call_started",
+                            "o": "text:equal"
+                        }
+                    ]
+                ]
+            },
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 2,
+                            "module": "google-sheets:addRow",
+                            "version": 2,
+                            "parameters": {
+                                "__IMTCONN__": 11248212
+                            },
+                            "mapper": {
+                                "from": "drive",
+                                "mode": "select",
+                                "values": {
+                                    "0": "{{1.call.call_analysis.custom_analysis_data.name}}",
+                                    "1": "{{1.call.call_analysis.custom_analysis_data.age}}",
+                                    "2": "{{1.call.call_analysis.custom_analysis_data.gender}}",
+                                    "3": "{{1.call.call_analysis.custom_analysis_data.location}}",
+                                    "4": "{{1.call.call_analysis.custom_analysis_data.work_area}}",
+                                    "5": "{{1.call.call_analysis.custom_analysis_data.minimum_wage}}"
+                                },
+                                "sheetId": "Sheet1",
+                                "spreadsheetId": "/1gAcU_xNKX9fJfOLmgfW03PNYZJP9xAocVLRYXdIQx2M",
+                                "includesHeaders": true,
+                                "insertDataOption": "INSERT_ROWS",
+                                "valueInputOption": "USER_ENTERED",
+                                "insertUnformatted": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 300,
+                                    "y": -300
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "from": {
+                                            "label": "My Drive"
+                                        },
+                                        "mode": {
+                                            "label": "Search by path"
+                                        },
+                                        "sheetId": {
+                                            "label": "Sheet1"
+                                        },
+                                        "spreadsheetId": {
+                                            "path": [
+                                                "majdoor"
+                                            ]
+                                        },
+                                        "includesHeaders": {
+                                            "label": "Yes",
+                                            "nested": [
+                                                {
+                                                    "name": "values",
+                                                    "spec": [
+                                                        {
+                                                            "name": "0",
+                                                            "type": "text",
+                                                            "label": "name (A)"
+                                                        },
+                                                        {
+                                                            "name": "1",
+                                                            "type": "text",
+                                                            "label": "age (B)"
+                                                        },
+                                                        {
+                                                            "name": "2",
+                                                            "type": "text",
+                                                            "label": "gender (C)"
+                                                        },
+                                                        {
+                                                            "name": "3",
+                                                            "type": "text",
+                                                            "label": "location (D)"
+                                                        },
+                                                        {
+                                                            "name": "4",
+                                                            "type": "text",
+                                                            "label": "work_area (E)"
+                                                        },
+                                                        {
+                                                            "name": "5",
+                                                            "type": "text",
+                                                            "label": "(F)"
+                                                        },
+                                                        {
+                                                            "name": "6",
+                                                            "type": "text",
+                                                            "label": "(G)"
+                                                        },
+                                                        {
+                                                            "name": "7",
+                                                            "type": "text",
+                                                            "label": "(H)"
+                                                        },
+                                                        {
+                                                            "name": "8",
+                                                            "type": "text",
+                                                            "label": "(I)"
+                                                        },
+                                                        {
+                                                            "name": "9",
+                                                            "type": "text",
+                                                            "label": "(J)"
+                                                        },
+                                                        {
+                                                            "name": "10",
+                                                            "type": "text",
+                                                            "label": "(K)"
+                                                        },
+                                                        {
+                                                            "name": "11",
+                                                            "type": "text",
+                                                            "label": "(L)"
+                                                        },
+                                                        {
+                                                            "name": "12",
+                                                            "type": "text",
+                                                            "label": "(M)"
+                                                        },
+                                                        {
+                                                            "name": "13",
+                                                            "type": "text",
+                                                            "label": "(N)"
+                                                        },
+                                                        {
+                                                            "name": "14",
+                                                            "type": "text",
+                                                            "label": "(O)"
+                                                        },
+                                                        {
+                                                            "name": "15",
+                                                            "type": "text",
+                                                            "label": "(P)"
+                                                        },
+                                                        {
+                                                            "name": "16",
+                                                            "type": "text",
+                                                            "label": "(Q)"
+                                                        },
+                                                        {
+                                                            "name": "17",
+                                                            "type": "text",
+                                                            "label": "(R)"
+                                                        },
+                                                        {
+                                                            "name": "18",
+                                                            "type": "text",
+                                                            "label": "(S)"
+                                                        },
+                                                        {
+                                                            "name": "19",
+                                                            "type": "text",
+                                                            "label": "(T)"
+                                                        },
+                                                        {
+                                                            "name": "20",
+                                                            "type": "text",
+                                                            "label": "(U)"
+                                                        },
+                                                        {
+                                                            "name": "21",
+                                                            "type": "text",
+                                                            "label": "(V)"
+                                                        },
+                                                        {
+                                                            "name": "22",
+                                                            "type": "text",
+                                                            "label": "(W)"
+                                                        },
+                                                        {
+                                                            "name": "23",
+                                                            "type": "text",
+                                                            "label": "(X)"
+                                                        },
+                                                        {
+                                                            "name": "24",
+                                                            "type": "text",
+                                                            "label": "(Y)"
+                                                        },
+                                                        {
+                                                            "name": "25",
+                                                            "type": "text",
+                                                            "label": "(Z)"
+                                                        }
+                                                    ],
+                                                    "type": "collection",
+                                                    "label": "Values"
+                                                }
+                                            ]
+                                        },
+                                        "insertDataOption": {
+                                            "mode": "chose",
+                                            "label": "Insert rows"
+                                        },
+                                        "valueInputOption": {
+                                            "mode": "chose",
+                                            "label": "User entered"
+                                        },
+                                        "insertUnformatted": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google"
+                                            },
+                                            "label": "My Google connection (hritabratadas8@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "mode",
+                                        "type": "select",
+                                        "label": "Search Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "select",
+                                                "fromAll",
+                                                "map"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "insertUnformatted",
+                                        "type": "boolean",
+                                        "label": "Unformatted",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "valueInputOption",
+                                        "type": "select",
+                                        "label": "Value input option",
+                                        "validate": {
+                                            "enum": [
+                                                "USER_ENTERED",
+                                                "RAW"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "insertDataOption",
+                                        "type": "select",
+                                        "label": "Insert data option",
+                                        "validate": {
+                                            "enum": [
+                                                "INSERT_ROWS",
+                                                "OVERWRITE"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "from",
+                                        "type": "select",
+                                        "label": "Drive",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "spreadsheetId",
+                                        "type": "file",
+                                        "label": "Spreadsheet ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "sheetId",
+                                        "type": "select",
+                                        "label": "Sheet Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "includesHeaders",
+                                        "type": "select",
+                                        "label": "Table contains headers",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                true,
+                                                false
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "values",
+                                        "spec": [
+                                            {
+                                                "name": "0",
+                                                "type": "text",
+                                                "label": "name (A)"
+                                            },
+                                            {
+                                                "name": "1",
+                                                "type": "text",
+                                                "label": "age (B)"
+                                            },
+                                            {
+                                                "name": "2",
+                                                "type": "text",
+                                                "label": "gender (C)"
+                                            },
+                                            {
+                                                "name": "3",
+                                                "type": "text",
+                                                "label": "location (D)"
+                                            },
+                                            {
+                                                "name": "4",
+                                                "type": "text",
+                                                "label": "work_area (E)"
+                                            },
+                                            {
+                                                "name": "5",
+                                                "type": "text",
+                                                "label": "(F)"
+                                            },
+                                            {
+                                                "name": "6",
+                                                "type": "text",
+                                                "label": "(G)"
+                                            },
+                                            {
+                                                "name": "7",
+                                                "type": "text",
+                                                "label": "(H)"
+                                            },
+                                            {
+                                                "name": "8",
+                                                "type": "text",
+                                                "label": "(I)"
+                                            },
+                                            {
+                                                "name": "9",
+                                                "type": "text",
+                                                "label": "(J)"
+                                            },
+                                            {
+                                                "name": "10",
+                                                "type": "text",
+                                                "label": "(K)"
+                                            },
+                                            {
+                                                "name": "11",
+                                                "type": "text",
+                                                "label": "(L)"
+                                            },
+                                            {
+                                                "name": "12",
+                                                "type": "text",
+                                                "label": "(M)"
+                                            },
+                                            {
+                                                "name": "13",
+                                                "type": "text",
+                                                "label": "(N)"
+                                            },
+                                            {
+                                                "name": "14",
+                                                "type": "text",
+                                                "label": "(O)"
+                                            },
+                                            {
+                                                "name": "15",
+                                                "type": "text",
+                                                "label": "(P)"
+                                            },
+                                            {
+                                                "name": "16",
+                                                "type": "text",
+                                                "label": "(Q)"
+                                            },
+                                            {
+                                                "name": "17",
+                                                "type": "text",
+                                                "label": "(R)"
+                                            },
+                                            {
+                                                "name": "18",
+                                                "type": "text",
+                                                "label": "(S)"
+                                            },
+                                            {
+                                                "name": "19",
+                                                "type": "text",
+                                                "label": "(T)"
+                                            },
+                                            {
+                                                "name": "20",
+                                                "type": "text",
+                                                "label": "(U)"
+                                            },
+                                            {
+                                                "name": "21",
+                                                "type": "text",
+                                                "label": "(V)"
+                                            },
+                                            {
+                                                "name": "22",
+                                                "type": "text",
+                                                "label": "(W)"
+                                            },
+                                            {
+                                                "name": "23",
+                                                "type": "text",
+                                                "label": "(X)"
+                                            },
+                                            {
+                                                "name": "24",
+                                                "type": "text",
+                                                "label": "(Y)"
+                                            },
+                                            {
+                                                "name": "25",
+                                                "type": "text",
+                                                "label": "(Z)"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Values"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 5,
+                            "module": "postgres:InsertIntoTable",
+                            "version": 2,
+                            "parameters": {
+                                "table": "\"public\".\"workers\"",
+                                "account": 11441706,
+                                "isToManageDataInSharedTransaction": true
+                            },
+                            "mapper": {
+                                "@name": "{{1.call.call_analysis.custom_analysis_data.name}}",
+                                "@phone": "{{1.call.from_number}}",
+                                "@rating": "0.0",
+                                "@skills": "{{1.call.call_analysis.custom_analysis_data.work_area}}",
+                                "@location": "{{1.call.call_analysis.custom_analysis_data.location}}",
+                                "@is_available": "true"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 300,
+                                    "y": 300
+                                },
+                                "restore": {
+                                    "parameters": {
+                                        "table": {
+                                            "label": "public.workers"
+                                        },
+                                        "account": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "postgres"
+                                            },
+                                            "label": "My PostgreSQL connection (neondb_owner@ep-holy-pine-adnkv1zz-pooler.c-2.us-east-1.aws.neon.tech:5432/neondb)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "account",
+                                        "type": "account:postgres",
+                                        "label": "Connection",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "isToManageDataInSharedTransaction",
+                                        "type": "boolean",
+                                        "label": "Manage data within the shared transaction",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "returnRows",
+                                        "type": "boolean",
+                                        "label": "Return Rows"
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "@phone",
+                                        "type": "text",
+                                        "label": "phone"
+                                    },
+                                    {
+                                        "name": "@name",
+                                        "type": "text",
+                                        "label": "name"
+                                    },
+                                    {
+                                        "name": "@location",
+                                        "type": "text",
+                                        "label": "location"
+                                    },
+                                    {
+                                        "name": "@skills",
+                                        "type": "text",
+                                        "label": "skills"
+                                    },
+                                    {
+                                        "name": "@is_available",
+                                        "type": "text",
+                                        "label": "is_available"
+                                    },
+                                    {
+                                        "name": "@rating",
+                                        "type": "number",
+                                        "label": "rating"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "rowsAffected",
+                                        "type": "number",
+                                        "label": "Affected rows"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": [
+                [
+                    {
+                        "id": 3,
+                        "module": "mongodb:InsertRecord",
+                        "version": 2,
+                        "parameters": {
+                            "type": 415641,
+                            "account": 11249092,
+                            "collection": "majdoors",
+                            "documentInputMethod": "dataStructure"
+                        },
+                        "mapper": {
+                            "age": "{{1.call.call_analysis.custom_analysis_data.age}}",
+                            "name": "{{1.call.call_analysis.custom_analysis_data.name}}",
+                            "gender": "{{1.call.call_analysis.custom_analysis_data.gender}}",
+                            "location": "{{1.call.call_analysis.custom_analysis_data.location}}",
+                            "work_area": "{{1.call.call_analysis.custom_analysis_data.work_area}}",
+                            "minimum_wage": "{{1.call.call_analysis.custom_analysis_data.minimum_wage}}"
+                        },
+                        "metadata": {
+                            "designer": {
+                                "x": 300,
+                                "y": 0,
+                                "messages": [
+                                    {
+                                        "category": "link",
+                                        "severity": "warning",
+                                        "message": "The module is not connected to the data flow."
+                                    },
+                                    {
+                                        "category": "reference",
+                                        "severity": "warning",
+                                        "message": "Referenced module 'Webhooks - Custom webhook' [1] is not accessible."
+                                    }
+                                ]
+                            },
+                            "restore": {
+                                "parameters": {
+                                    "type": {
+                                        "label": "majdoors schema"
+                                    },
+                                    "account": {
+                                        "data": {
+                                            "scoped": "true",
+                                            "connection": "mongodb"
+                                        },
+                                        "label": "My MongoDB connection"
+                                    },
+                                    "documentInputMethod": {
+                                        "label": "Data structureUse a data structure to define the document structure. Map or enter values into fields for each key."
+                                    }
+                                }
+                            },
+                            "parameters": [
+                                {
+                                    "name": "account",
+                                    "type": "account:mongodb",
+                                    "label": "Connection",
+                                    "required": true
+                                },
+                                {
+                                    "name": "collection",
+                                    "type": "text",
+                                    "label": "Collection",
+                                    "required": true
+                                },
+                                {
+                                    "name": "documentInputMethod",
+                                    "type": "select",
+                                    "label": "Document input method",
+                                    "required": true,
+                                    "validate": {
+                                        "enum": [
+                                            "dataStructure",
+                                            "jsonString"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "udt",
+                                    "label": "Data structure",
+                                    "required": true
+                                }
+                            ],
+                            "expect": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": null
+                                },
+                                {
+                                    "name": "age",
+                                    "type": "number",
+                                    "label": null
+                                },
+                                {
+                                    "name": "gender",
+                                    "type": "text",
+                                    "label": null
+                                },
+                                {
+                                    "name": "location",
+                                    "type": "text",
+                                    "label": null
+                                },
+                                {
+                                    "name": "work_area",
+                                    "type": "text",
+                                    "label": null
+                                },
+                                {
+                                    "name": "minimum_wage",
+                                    "type": "number",
+                                    "label": null
+                                }
+                            ]
+                        }
+                    }
+                ]
+            ]
+        },
+        "zone": "eu2.make.com",
+        "notes": []
+    }
+}
